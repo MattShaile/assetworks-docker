@@ -1,2 +1,5 @@
 # assetworks-docker
-DockerFile source for epicindustries/assetworks docker image
+
+https://hub.docker.com/r/epicindustries/assetworks/
+
+Docker container running latest Debian with node, npm, imagemagick, ffmpeg and texture packer installed
