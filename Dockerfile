@@ -1,9 +1,10 @@
 FROM debian:latest
 
-COPY TexturePacker-4.5.0-ubuntu64.deb /tmp/TexturePacker.deb
+COPY TexturePacker-4.6.3-ubuntu64.deb /tmp/TexturePacker.deb
 
 RUN apt-get update \
 		&& apt-get -qq update \
+        && apt-get install -y libssl1.0.2 \
 		&& apt install -y libglu1-mesa libglib2.0-0 \
         && rm -rf /var/cache/apk/* \
         && dpkg -i /tmp/TexturePacker.deb \
