@@ -1,5 +1,7 @@
 FROM debian:latest
 
+RUN useradd -m bamboo -p bamboo && usermod -a -G bamboo bamboo
+
 COPY TexturePacker-4.6.3-ubuntu64.deb /tmp/TexturePacker.deb
 
 RUN apt-get update \
