@@ -18,9 +18,10 @@ For convenience a user:group of bamboo:bamboo is available so files created can 
 ## Building / Publishing
 
 `docker login`
+
 `docker build --tag=epicindustries/assetworks .`
-`docker tag image epicindustries/assetworks:latest`
-`docker push epicindustries/assetworks:latest`
+
+`docker push epicindustries/assetworks`
 
 ## Credit
 
