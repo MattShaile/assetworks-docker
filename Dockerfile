@@ -14,7 +14,7 @@ RUN apt-get update \
         && echo 'agree' | TexturePacker --license-info \
 		&& apt-get update && apt-get install -my wget gnupg \
 		&& apt-get install curl -y \
-		&& curl -sL https://deb.nodesource.com/setup_6.x | bash - \
+		&& curl -sL https://deb.nodesource.com/setup_10.x | bash - \
 		&& apt-get install -y nodejs \
 		&& update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10 \
 		&& apt-get install imagemagick -y \
