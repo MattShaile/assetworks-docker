@@ -18,8 +18,9 @@ RUN apt-get update \
 		&& apt-get install -y nodejs \
 		&& update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10 \
 		&& apt-get install imagemagick -y \
-		&& apt-get install ffmpeg -y
+		&& apt-get install ffmpeg -y \
+		&& sed -i 's/256MiB/16GiB/g' /etc/ImageMagick-6/policy.xml
 
 WORKDIR /tmp
 
-RUN identify -version && ffmpeg -version && node -v && npm -version && TexturePacker --version
+RUN identify -version && cat /etc/ImageMagick-6/policy.xml && ffmpeg -version && node -v && npm -version && TexturePacker --version
