@@ -6,7 +6,7 @@ COPY TexturePacker-4.8.3-ubuntu64.deb /tmp/TexturePacker.deb
 
 RUN apt-get update \
 		&& apt-get -qq update \
-        && apt-get install -y libssl1.0.2 \
+        && apt-get install -y libssl1.1 \
 		&& apt install -y libglu1-mesa libglib2.0-0 \
         && rm -rf /var/cache/apk/* \
         && dpkg -i /tmp/TexturePacker.deb \
