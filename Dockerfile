@@ -19,10 +19,7 @@ RUN apt-get update \
 		&& update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10 \
 		&& apt-get install imagemagick -y \
 		&& apt-get install ffmpeg -y \
-		&& sed -i 's/256MiB/16GiB/g' /etc/ImageMagick-6/policy.xml \
-		&& sed -i 's/512MiB/8GiB/g' /etc/ImageMagick-6/policy.xml \
-		&& sed -i 's/128MiB/8GiB/g' /etc/ImageMagick-6/policy.xml \
-		&& sed -i 's/1GiB/50GiB/g' /etc/ImageMagick-6/policy.xml
+		&& sed -i 's/256MiB/8GiB/g' /etc/ImageMagick-6/policy.xml
 
 WORKDIR /tmp
 
