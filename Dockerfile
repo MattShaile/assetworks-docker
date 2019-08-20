@@ -13,7 +13,7 @@ RUN apt-get update \
 	&& make \
 	&& make install \
 	&& ldconfig /usr/local/lib \
-	&& ls /etc/ \
+	&& make check \
 	&& cd ../ \
 	&& apt-get -qq update \
 	&& apt-get install -y libssl1.1 \
