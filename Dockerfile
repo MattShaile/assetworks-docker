@@ -6,6 +6,9 @@ COPY TexturePacker-4.8.3-ubuntu64.deb /tmp/TexturePacker.deb
 COPY ImageMagick.tar.gz /tmp/ImageMagick.tar.gz
 
 RUN apt-get update \
+	&& apt-get -qq update \
+	&& apt-get install -y libssl1.1 \
+	&& apt install -y libglu1-mesa libglib2.0-0 \
 	&& apt-get install build-essential -y \
 	&& tar xvzf /tmp/ImageMagick.tar.gz \
 	&& cd ImageMagick-7.0.8-61/ \
@@ -15,9 +18,6 @@ RUN apt-get update \
 	&& ldconfig /usr/local/lib \
 	&& make check \
 	&& cd ../ \
-	&& apt-get -qq update \
-	&& apt-get install -y libssl1.1 \
-	&& apt install -y libglu1-mesa libglib2.0-0 \
 	&& rm -rf /var/cache/apk/* \
 	&& dpkg -i /tmp/TexturePacker.deb \
 	&& rm -rf /tmp/TexturePacker.deb \
