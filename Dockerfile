@@ -31,5 +31,5 @@ RUN apt-get update \
 
 WORKDIR /tmp
 
-RUN identify -version && identify -list resource && ffmpeg -version && node -v && npm -version && TexturePacker --version
+RUN export PATH=/usr/bin/convert:$PATH && identify -version && identify -list resource && ffmpeg -version && node -v && npm -version && TexturePacker --version
 
