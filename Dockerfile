@@ -9,7 +9,7 @@ RUN apt-get update \
 	&& apt-get install build-essential -y \
 	&& tar xvzf /tmp/ImageMagick.tar.gz \
 	&& cd ImageMagick-7.0.8-61/ \
-	&& ./configure \
+	&& ./configure --disable-opencl \
 	&& make \
 	&& make install \
 	&& ldconfig /usr/local/lib \
