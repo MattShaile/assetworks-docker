@@ -13,7 +13,8 @@ RUN apt-get update \
 				&& make \
 				&& make install \
 				&& ldconfig /usr/local/lib \
-                && sed -i 's/256MiB/8GiB/g' /etc/ImageMagick-7/policy.xml \
+				&& ls /etc/ \
+                && sed -i 's/256MiB/8GiB/g' /etc/ImageMagick/policy.xml \
 				&& cd ../ \
                 && apt-get -qq update \
         && apt-get install -y libssl1.1 \
