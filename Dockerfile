@@ -11,7 +11,7 @@ RUN apt-get update \
 	&& apt install -y libglu1-mesa libglib2.0-0 \
 	&& apt-get install build-essential -y \
 	&& tar xvzf /tmp/ImageMagick.tar.gz \
-	&& cd ImageMagick-7.0.8-61/ \
+	&& cd ImageMagick-6.9.10-61/ \
 	&& ./configure --with-modules --enable-shared --with-perl \
 	&& make \
 	&& make install \
