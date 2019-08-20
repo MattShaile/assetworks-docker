@@ -11,9 +11,10 @@ RUN apt-get update \
                 && cd ImageMagick-7.0.8-61/ \
 				&& ./configure \
 				&& make \
-				&& sudo make install \
-				&& sudo ldconfig /usr/local/lib \
+				&& make install \
+				&& ldconfig /usr/local/lib \
                 && sed -i 's/256MiB/8GiB/g' /etc/ImageMagick-7/policy.xml \
+				&& cd ../ \
                 && apt-get -qq update \
         && apt-get install -y libssl1.1 \
                 && apt install -y libglu1-mesa libglib2.0-0 \
