@@ -1,4 +1,4 @@
-FROM debian:9
+FROM debian:10
 
 RUN useradd -m bamboo -p bamboo && usermod -a -G bamboo bamboo
 
@@ -16,6 +16,7 @@ RUN apt-get update \
 		&& apt-get install curl -y \
 		&& curl -sL https://deb.nodesource.com/setup_10.x | bash - \
 		&& apt-get install -y nodejs \
+		&& apt-get install -y git \
 		&& update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10 \
 		&& apt-get install imagemagick -y \
 		&& apt-get install ffmpeg -y \
@@ -23,4 +24,4 @@ RUN apt-get update \
 
 WORKDIR /tmp
 
-RUN identify -version && cat /etc/ImageMagick-6/policy.xml && ffmpeg -version && node -v && npm -version && TexturePacker --version
+RUN git --version && identify -version && cat /etc/ImageMagick-6/policy.xml && ffmpeg -version && node -v && npm -version && TexturePacker --version

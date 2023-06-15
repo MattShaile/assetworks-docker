@@ -5,7 +5,7 @@ https://hub.docker.com/r/epicindustries/assetworks/
 
 ## Description
 
-Docker container running latest Debian with node (10), npm (6), imagemagick, ffmpeg and texture packer installed
+Docker container running latest Debian with git, node (10), npm (6), imagemagick, ffmpeg and texture packer installed
 
 ## Activate TexturePacker License
 
