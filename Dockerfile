@@ -18,6 +18,10 @@ RUN apt-get update \
 && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
 && apt-get -y install nodejs git imagemagick ffmpeg
 
+# Install Git LFS
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash \
+&& apt-get -y install git-lfs
+
 RUN sed -i 's/256MiB/8GiB/g' /etc/ImageMagick-6/policy.xml
 
 RUN git --version && identify -version && cat /etc/ImageMagick-6/policy.xml && ffmpeg -version && node -v && npm -version && TexturePacker --version
