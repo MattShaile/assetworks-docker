@@ -1,22 +1,25 @@
-FROM debian:10
-
-RUN useradd -m bamboo -p bamboo && usermod -a -G bamboo bamboo
+FROM ubuntu:20.04
 
 COPY TexturePacker-7.0.3.deb /tmp/TexturePacker.deb
 
+# Install dependencies and TexturePacker, cleanup
 RUN apt-get update \
-		&& apt-get -qq update \
-		&&  apt-get -y install libegl1-mesa libgl1-mesa-glx \
+&& apt-get -y install libegl1-mesa libgl1-mesa-glx \
                        libfontconfig libx11-6 libxkbcommon-x11-0 \
                        /tmp/TexturePacker.deb \
-		&& apt-get update && apt-get install -my wget gnupg \
-		&& apt-get install curl -y \
-		&& curl -sL https://deb.nodesource.com/setup_10.x | bash - \
-		&& apt-get install -y nodejs \
-		&& apt-get install -y git \
-		&& update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10 \
-		&& apt-get install imagemagick -y \
-		&& apt-get install ffmpeg -y \
-		&& sed -i 's/256MiB/8GiB/g' /etc/ImageMagick-6/policy.xml
+&& rm -rf /var/lib/apt/lists/*
+
+RUN echo agree | TexturePacker --version
+
+# Install required packages
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update \
+&& apt-get -y install curl \
+&& curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+&& apt-get -y install nodejs git imagemagick ffmpeg
+
+RUN sed -i 's/256MiB/8GiB/g' /etc/ImageMagick-6/policy.xml
+
+RUN git --version && identify -version && cat /etc/ImageMagick-6/policy.xml && ffmpeg -version && node -v && npm -version && TexturePacker --version
 
 WORKDIR /tmp

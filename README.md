@@ -9,7 +9,7 @@ Docker container running latest Debian with git, node (10), npm (6), imagemagick
 
 ## Activate TexturePacker License
 
-Run `TexturePacker --activate-license KEY` with your license key to activate texture packer
+Run `TexturePacker --activate-license KEY` with your license key to activate texture packer (every time you use it) or set TP_FLOATING_LICENSE environment variable
 
 ## Bamboo CI (optional)
 
