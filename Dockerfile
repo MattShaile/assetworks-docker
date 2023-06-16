@@ -1,10 +1,15 @@
 FROM ubuntu:20.04
 
+# Install dependencies
+RUN apt-get update && apt-get -y install python3-pip
+
+# Install awscli
+RUN pip3 install awscli
+
 COPY TexturePacker-7.0.3.deb /tmp/TexturePacker.deb
 
-# Install dependencies and TexturePacker, cleanup
-RUN apt-get update \
-&& apt-get -y install libegl1-mesa libgl1-mesa-glx \
+# Install remaining dependencies and TexturePacker, cleanup
+RUN apt-get -y install libegl1-mesa libgl1-mesa-glx \
                        libfontconfig libx11-6 libxkbcommon-x11-0 \
                        /tmp/TexturePacker.deb \
 && rm -rf /var/lib/apt/lists/*
