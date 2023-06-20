@@ -21,7 +21,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
 && apt-get -y install curl \
 && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
-&& apt-get -y install nodejs git imagemagick ffmpeg
+&& apt-get -y install nodejs git imagemagick ffmpeg zip
 
 # Install Git LFS
 RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash \
