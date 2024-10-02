@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 
-# Install dependencies
-RUN apt-get update && apt-get -y install python3-pip
+# Install dependencies including libltdl-dev
+RUN apt-get update && apt-get -y install python3-pip build-essential libltdl-dev
 
 # Install awscli
 RUN pip3 install awscli
@@ -20,15 +20,30 @@ RUN echo agree | TexturePacker --version
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
 && apt-get -y install curl \
-&& curl -sL https://deb.nodesource.com/setup_10.x | bash - \
-&& apt-get -y install nodejs git imagemagick ffmpeg zip
+&& curl -sL https://deb.nodesource.com/setup_22.x | bash - \
+&& apt-get -y install nodejs git ffmpeg zip
+
+# Copy ImageMagick 7 tarball
+COPY ImageMagick.tar.gz /tmp/
+
+# Install ImageMagick 7 from local tarball
+RUN cd /tmp \
+    && tar xvzf ImageMagick.tar.gz \
+    && cd ImageMagick-7.1.1-38 \
+    && ./configure --with-modules \
+    && make \
+    && make install \
+    && ldconfig /usr/local/lib \
+    && identify -version
 
 # Install Git LFS
 RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash \
 && apt-get -y install git-lfs
 
-RUN sed -i 's/256MiB/8GiB/g' /etc/ImageMagick-6/policy.xml
+# Modify ImageMagick 7's memory policy
+RUN sed -i 's/256MiB/8GiB/g' /usr/local/etc/ImageMagick-7/policy.xml
 
-RUN git --version && identify -version && cat /etc/ImageMagick-6/policy.xml && ffmpeg -version && node -v && npm -version && TexturePacker --version
+# Verify versions of installed tools
+RUN git --version && identify -version && cat /usr/local/etc/ImageMagick-7/policy.xml && ffmpeg -version && node -v && npm -version && TexturePacker --version
 
 WORKDIR /tmp
